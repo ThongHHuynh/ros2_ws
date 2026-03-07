@@ -18,12 +18,12 @@
         </plugin>
     </gazebo>
     <!-- handled by ROS2 CONTROL -->
-    <!-- <gazebo>
+    <gazebo>
         <plugin filename="gz-sim-joint-state-publisher-system"
                 name="gz::sim::systems::JointStatePublisher">
             <joint_name>base_left_wheel_joint</joint_name>
             <joint_name>base_right_wheel_joint</joint_name>
         </plugin>
-    </gazebo> -->
+    </gazebo>
         
 </robot>

@@ -38,24 +38,24 @@ def generate_launch_description():
     #     executable="joint_state_publisher_gui"
     # )
 
-    controller_node = Node(
-        package='controller_manager',
-        executable='ros2_control_node',
-        parameters=[controller_path],
-        remappings=[('/controller_manager/robot_description','/robot_description'),
-                    ('/diff_drive_controller/cmd_vel_unstamped','/cmd_vel')]
-    )
-    joint_state_broadcaster = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['joint_state_broadcaster'],
-    )
-    diff_drive = Node(
-        package='controller_manager',
-        executable= 'spawner',
-        arguments=['diff_drive_controller'],
-        #remappings=[('/diff_drive_controller/cmd_vel','/cmd_vel')]
-    )
+    # controller_node = Node(
+    #     package='controller_manager',
+    #     executable='ros2_control_node',
+    #     parameters=[controller_path],
+    #     remappings=[('/controller_manager/robot_description','/robot_description'),
+    #                 ('/diff_drive_controller/cmd_vel_unstamped','/cmd_vel')]
+    # )
+    # joint_state_broadcaster = Node(
+    #     package='controller_manager',
+    #     executable='spawner',
+    #     arguments=['joint_state_broadcaster'],
+    # )
+    # diff_drive = Node(
+    #     package='controller_manager',
+    #     executable= 'spawner',
+    #     arguments=['diff_drive_controller'],
+    #     #remappings=[('/diff_drive_controller/cmd_vel','/cmd_vel')]
+    # )
     rviz2_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -72,7 +72,7 @@ def generate_launch_description():
                 )
             ]
         ),
-        launch_arguments={"gz_args": [" -r -v 4 ", 'empty.sdf']}.items(),
+        launch_arguments={"gz_args": [" -r -v 4 ", 'empty.sdf'],}.items(),
     )
     # Spawn the robot in Gazebo
     spawn_entity = Node(
@@ -103,9 +103,9 @@ def generate_launch_description():
 
     ld = LaunchDescription()
     ld.add_action(robot_state_publisher_node)
-    ld.add_action(controller_node)
-    ld.add_action(joint_state_broadcaster)
-    ld.add_action(diff_drive)
+    # ld.add_action(controller_node)
+    # ld.add_action(joint_state_broadcaster)
+    # ld.add_action(diff_drive)
     # ld.add_action(joint_state_publisher_gui_node)
     ld.add_action(rviz2_node)
     ld.add_action(gz_sim)
