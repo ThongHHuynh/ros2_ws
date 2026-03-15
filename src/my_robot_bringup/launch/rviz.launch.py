@@ -5,7 +5,7 @@ import os
 def generate_launch_description():
     robot_description_path = get_package_share_path('my_robot_description')
 
-    rviz_config_path = os.path.join(robot_description_path, 'rviz', 'urdf_config.rviz')
+    rviz_config_path = os.path.join(robot_description_path, 'rviz', 'lidar_config.rviz')
 
     rviz2_node = Node(
         package='rviz2',
