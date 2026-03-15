@@ -138,7 +138,7 @@ hardware_interface::return_type MobileBaseHardwareInterface::read(const rclcpp::
     std::istringstream iss(line); //create string stream
     char tag;
     long long lc, rc;
-    if (!(iss >> tag >> lc >> rc)) continue; //read tag -> left commanf -> right command
+    if (!(iss >> tag >> rc >> lc)) continue; //read tag -> left commanf -> right command
 
     if (invert_left_enc_)  lc = -lc;
     if (invert_right_enc_) rc = -rc;
@@ -190,7 +190,7 @@ hardware_interface::return_type MobileBaseHardwareInterface::write(const rclcpp:
   std::ostringstream oss; //create string builder
   oss.setf(std::ios::fixed); //set fixed format
   oss.precision(4); //4 dec
-  oss << "V " << wl << " " << wr << "\n";
+  oss << "V " << wr << " " << wl << "\n";
 
   if (!serial_.write_string(oss.str()))
     return hardware_interface::return_type::ERROR;
