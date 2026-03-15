@@ -5,11 +5,11 @@ from launch.substitutions import Command
 import os
 from ament_index_python.packages import get_package_share_path
 
-def serial_available(path ="/dev/ttyUSB0"):
+def serial_available(path ="/dev/ttyCH341USB0"):
     return os.path.exists(path) and os.access(path, os.R_OK | os.W_OK)
 
 def generate_launch_description():
-    port = "/dev/ttyUSB0"
+    port = "/dev/ttyCH341USB0"
     use_mock = not serial_available(port)
 
     robot_description_path = get_package_share_path('my_robot_description')
@@ -65,6 +65,6 @@ def generate_launch_description():
     ld.add_action(joint_state_broadcaster)
     ld.add_action(diff_drive)
     # ld.add_action(joint_state_publisher_gui_node)
-    ld.add_action(rviz2_node)
+    # ld.add_action(rviz2_node)
 
     return ld
