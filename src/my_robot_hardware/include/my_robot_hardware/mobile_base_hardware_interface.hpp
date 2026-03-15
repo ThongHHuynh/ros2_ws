@@ -37,8 +37,13 @@ private:
 
 
     double counts_per_rev_{1440.0};        // encoder counts per wheel revolution (output shaft)
-    bool invert_left_{false};
-    bool invert_right_{false};
+    // bool invert_left_{false};
+    // bool invert_right_{false};
+    bool invert_left_cmd_{false};
+    bool invert_right_cmd_{false};
+    bool invert_left_enc_{false};
+    bool invert_right_enc_{false};
+
     double max_rad_s_{20.0};               // safety clamp
 
     // Serial

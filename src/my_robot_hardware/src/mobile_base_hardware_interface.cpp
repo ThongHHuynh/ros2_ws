@@ -43,8 +43,14 @@ hardware_interface::CallbackReturn MobileBaseHardwareInterface::on_init(const ha
   baud_ = std::stoi(get("baud", std::to_string(baud_)));
   timeout_ms_ = std::stoi(get("timeout_ms", std::to_string(timeout_ms_)));
   counts_per_rev_ = std::stod(get("counts_per_rev", std::to_string(counts_per_rev_)));
-  invert_left_ = (get("invert_left", "false") == "true");
-  invert_right_ = (get("invert_right", "false") == "true");
+  // invert_left_ = (get("invert_left", "false") == "true");
+  // invert_right_ = (get("invert_right", "false") == "true");
+
+  invert_left_cmd_ = (get("invert_left_cmd", "false") == "true");
+  invert_right_cmd_ = (get("invert_right_cmd", "false") == "true");
+  invert_left_enc_ = (get("invert_left_enc", "false") == "true");
+  invert_right_enc_ = (get("invert_right_enc", "false") == "true");
+
   max_rad_s_ = std::stod(get("max_rad_s", std::to_string(max_rad_s_)));
 
   hw_pos_.assign(2, 0.0); //assign array [0,0]
@@ -134,8 +140,8 @@ hardware_interface::return_type MobileBaseHardwareInterface::read(const rclcpp::
     long long lc, rc;
     if (!(iss >> tag >> lc >> rc)) continue; //read tag -> left commanf -> right command
 
-    if (invert_left_)  lc = -lc;
-    if (invert_right_) rc = -rc;
+    if (invert_left_enc_)  lc = -lc;
+    if (invert_right_enc_) rc = -rc;
 
     const double dt = std::max(1e-6, period.seconds());
     const double rad_per_count = 2.0 * M_PI / std::max(1.0, counts_per_rev_);
@@ -178,8 +184,8 @@ hardware_interface::return_type MobileBaseHardwareInterface::write(const rclcpp:
   double wl = clamp(hw_cmd_[0]);
   double wr = clamp(hw_cmd_[1]);
 
-  if (invert_left_)  wl = -wl;
-  if (invert_right_) wr = -wr;
+  if (invert_left_cmd_)  wl = -wl;
+  if (invert_right_cmd_) wr = -wr;
 
   std::ostringstream oss; //create string builder
   oss.setf(std::ios::fixed); //set fixed format
