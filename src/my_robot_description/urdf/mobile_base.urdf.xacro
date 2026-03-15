@@ -18,7 +18,7 @@
       <!-- <mass
         value="0.600820640619417" /> -->
       <mass
-        value="1.600820640619417" />
+        value="0.600820640619417" />
       <inertia
         ixx="0.00079861144929563"
         ixy="7.58401782035291E-08"
@@ -273,7 +273,7 @@
   <joint name="base_lidar_joint" type="fixed">
     <origin
       xyz="3E-05 2.5E-05 0.20108"
-      rpy="0 0 0" />
+      rpy="0 0 3.1416" />
       <!-- rpy="1.5708 0 1.5708" /> -->
     <parent
       link="base_link" />

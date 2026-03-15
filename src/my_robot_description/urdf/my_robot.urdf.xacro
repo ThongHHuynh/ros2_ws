@@ -14,5 +14,6 @@
         use_mock_hardware="$(arg use_mock_hardware)"
         serial_port="$(arg serial_port)"
         baud="$(arg baud)" />
+    <xacro:include filename="lidar.urdf.xacro" />
 
 </robot>

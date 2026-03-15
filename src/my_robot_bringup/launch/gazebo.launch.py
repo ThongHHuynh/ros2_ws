@@ -31,7 +31,10 @@ def generate_launch_description():
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description}] #require exact param name
+        parameters=[
+            {'robot_description': robot_description},  # require exact param name
+            {'use_sim_time': True},
+        ]
     )
     # joint_state_publisher_gui_node = Node(
     #     package="joint_state_publisher_gui",
@@ -59,7 +62,8 @@ def generate_launch_description():
     rviz2_node = Node(
         package='rviz2',
         executable='rviz2',
-        arguments=['-d',rviz_config_path]
+        arguments=['-d',rviz_config_path],
+        parameters=[{'use_sim_time': True}],
     )
     
     gz_sim = IncludeLaunchDescription(
@@ -72,7 +76,7 @@ def generate_launch_description():
                 )
             ]
         ),
-        launch_arguments={"gz_args": [" -r -v 4 ", 'empty.sdf'],}.items(),
+        launch_arguments={"gz_args": [" -r -v 4 ", 'empty.sdf']}.items(),
     )
     # Spawn the robot in Gazebo
     spawn_entity = Node(
