@@ -16,8 +16,8 @@
                 <param name="invert_right">true</param> -->
                 <param name="invert_left_cmd">false</param>
                 <param name="invert_right_cmd">false</param>
-                <param name="invert_left_enc">true</param>
-                <param name="invert_right_enc">true</param>
+                <param name="invert_left_enc">false</param>
+                <param name="invert_right_enc">false</param>
                 <param name="max_rad_s">5.0</param>
             </hardware>
             </xacro:unless>
