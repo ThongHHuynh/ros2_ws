@@ -68,6 +68,20 @@ def generate_launch_description():
         arguments=['-d',rviz_config_path]
     )
 
+    slam_node = Node(
+        package='slam_toolbox',
+        executable='async_slam_toolbox_node',
+        name ='slam_toolbox', 
+        parameters=[{
+            'odom_frame':'odom',
+            'base_frame': 'base_footprint',
+            'map_frame': 'map',
+            'scan_topic': 'scan',
+        }],
+        remappings=[('/odom', '/diff_drive_controller/odom')],
+        output='screen',
+    )
+
     ld = LaunchDescription()
     ld.add_action(robot_state_publisher_node)
     ld.add_action(controller_node)
