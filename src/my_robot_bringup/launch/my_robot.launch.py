@@ -90,5 +90,6 @@ def generate_launch_description():
     # ld.add_action(joint_state_publisher_gui_node)
     # ld.add_action(rviz2_node)
     ld.add_action(lidar_launch)
+    ld.add_action(slam_node)
 
     return ld
