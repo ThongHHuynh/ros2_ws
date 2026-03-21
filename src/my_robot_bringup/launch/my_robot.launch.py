@@ -22,6 +22,7 @@ def generate_launch_description():
     urdf_path = os.path.join(robot_description_path, 'urdf', 'my_robot.urdf.xacro')
     rviz_config_path = os.path.join(robot_description_path, 'rviz', 'urdf_config.rviz')
     controller_path = os.path.join(robot_bringup_path, 'config', 'my_robot_controller.yaml')
+    slam_toolbox_path = os.path.join(robot_bringup_path, 'config', 'slam_toolbox.yaml')
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path,' ',
                                                 'use_mock_hardware:=', 'true' if use_mock else 'false', ' ',
@@ -72,12 +73,7 @@ def generate_launch_description():
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
         name ='slam_toolbox', 
-        parameters=[{
-            'odom_frame':'odom',
-            'base_frame': 'base_footprint',
-            'map_frame': 'map',
-            'scan_topic': 'scan',
-        }],
+        parameters=[slam_toolbox_path],
         remappings=[('/odom', '/diff_drive_controller/odom')],
         output='screen',
     )
