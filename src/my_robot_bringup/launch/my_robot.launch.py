@@ -5,6 +5,9 @@ from launch.substitutions import Command
 import os
 from ament_index_python.packages import get_package_share_path
 
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
 def serial_available(path ="/dev/ttyCH341USB0"):
     return os.path.exists(path) and os.access(path, os.R_OK | os.W_OK)
 
@@ -24,6 +27,12 @@ def generate_launch_description():
                                                 'use_mock_hardware:=', 'true' if use_mock else 'false', ' ',
                                                 'serial_port:=', port,' ',
                                                 'baud:=','115200']), value_type=str)
+    
+    lidar_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(robot_bringup_path, 'launch', 'lidar.launch.py')
+        )
+    )
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -66,5 +75,6 @@ def generate_launch_description():
     ld.add_action(diff_drive)
     # ld.add_action(joint_state_publisher_gui_node)
     # ld.add_action(rviz2_node)
+    ld.add_action(lidar_launch)
 
     return ld
