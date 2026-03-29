@@ -82,13 +82,21 @@ def generate_launch_description():
         executable="parameter_bridge",
         parameters=[{'config_file': gazebo_config_path}]
     )
-    slam_node = Node(
-        package='slam_toolbox',
-        executable='async_slam_toolbox_node',
-        name ='slam_toolbox', 
-        parameters=[slam_toolbox_path],
-        remappings=[('/odom', '/diff_drive_controller/odom')],
-        output='screen',
+
+    nav2_dir = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [
+                os.path.join(
+                    get_package_share_directory("nav2_bringup"),
+                    "launch",
+                    "bringup_launch.py",
+                )
+            ], 
+        ),
+        launch_arguments = {
+                'map': '/home/tom/maps/simple_maze.yaml',
+                'use_sim_time': 'true',
+                'slam': 'False',}.items(),
     )
 
 
@@ -103,6 +111,6 @@ def generate_launch_description():
     ld.add_action(gz_sim)
     ld.add_action(spawn_entity)
     ld.add_action(ros_gz_bridge)
-    ld.add_action(slam_node)
+    ld.add_action(nav2_dir)
 
     return ld

@@ -29,7 +29,7 @@
   direction: GZ_TO_ROS
 
 - ros_topic_name: "/scan"
-  gz_topic_name: "/world/empty/model/my_robot/link/base_footprint/sensor/gpu_lidar/scan"
+  gz_topic_name: "/world/empty/model/my_robot/link/lidar_link/sensor/gpu_lidar/scan"
   ros_type_name: "sensor_msgs/msg/LaserScan"
   gz_type_name: "gz.msgs.LaserScan"
   direction: GZ_TO_ROS
