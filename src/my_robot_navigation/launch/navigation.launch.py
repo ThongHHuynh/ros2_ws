@@ -17,16 +17,18 @@ def generate_launch_description():
 
     robot_description_path = get_package_share_path('my_robot_description')
     robot_bringup_path = get_package_share_path('my_robot_bringup')
+    robot_navigation_path = get_package_share_path('my_robot_navigation')
 
     urdf_path = os.path.join(robot_description_path, 'urdf', 'my_robot.urdf.xacro')
     rviz_config_path = os.path.join(robot_description_path, 'rviz', 'urdf_config.rviz')
     controller_path = os.path.join(robot_bringup_path, 'config', 'my_robot_controller.yaml')
 
     gazebo_config_path = os.path.join(robot_bringup_path, 'config', 'gazebo_bridge.yaml')
-    nav2_params_path = os.path.join(robot_bringup_path, 'config', 'nav2_params.yaml')
     world_path = os.path.join(robot_description_path, 'worlds', 'maze.sdf')
     nav_map_path = '/home/tom/maps/simple_maze.yaml'
 
+    #slam_toolbox_path = os.path.join(robot_bringup_path, 'config', 'slam_toolbox.yaml')
+    nav2_params = os.path.join(robot_navigation_path, 'config', 'nav2_config.yaml')
     robot_description = ParameterValue(Command(['xacro ', urdf_path,' ',
                                                 'use_mock_hardware:=', 'true' if use_mock else 'false', ' ',
                                                 'serial_port:=', port,' ',
@@ -95,12 +97,11 @@ def generate_launch_description():
         ),
         launch_arguments = {
                 'map': nav_map_path,
-                'params_file': nav2_params_path,
                 'use_sim_time': 'true',
                 'slam': 'False',
+                'params_file': nav2_params,
                 'autostart': 'true',
-                'use_composition': 'False',
-        }.items(),
+                'use_composition': 'False'}.items(),
     )
 
     delayed_nav2 = TimerAction(
