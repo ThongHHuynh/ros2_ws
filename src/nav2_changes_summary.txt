@@ -213,3 +213,5 @@ Expected values:
 - /amcl base_frame_id -> base_footprint
 - /global_costmap/global_costmap robot_base_frame -> base_footprint
 - /map should be published by map_server
+
+

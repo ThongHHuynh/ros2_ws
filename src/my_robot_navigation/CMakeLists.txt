@@ -12,8 +12,14 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY config launch src 
+  DIRECTORY config launch src rviz
   DESTINATION share/${PROJECT_NAME}/
+)
+
+install(
+  PROGRAMS
+    src/nav2_initial_pose.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()

@@ -15,5 +15,6 @@
         serial_port="$(arg serial_port)"
         baud="$(arg baud)" />
     <xacro:include filename="lidar.urdf.xacro" />
+    <xacro:include filename="imu.urdf.xacro" />
 
 </robot>
