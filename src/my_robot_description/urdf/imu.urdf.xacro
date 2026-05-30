@@ -15,4 +15,12 @@
             <gz_frame_id>imu_link</gz_frame_id>
         </sensor>
     </gazebo>
+
+    <gazebo>
+        <plugin filename="gz-sim-sensors-system"
+                name="gz::sim::systems::Sensors"/>
+            <render_engine>ogre2</render_engine>
+    </gazebo>
+
+
 </robot>
