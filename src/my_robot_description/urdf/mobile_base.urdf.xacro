@@ -284,7 +284,7 @@
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
   </joint>
 
-  <link
+  <!-- <link
     name="camera_link">
     <inertial>
       <origin
@@ -314,13 +314,13 @@
         <box size="0.6 0.1 0.2"/>
       </geometry>
     </collision>
-  </link>
+  </link> -->
 
   
-  <joint name="camera_joint" type="fixed">
+  <!-- <joint name="camera_joint" type="fixed">
     <parent link="lidar_link"/>
     <child link ="camera_link"/>
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-  </joint>
+  </joint> -->
 
 </robot>

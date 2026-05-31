@@ -14,7 +14,7 @@ slam_toolbox:
     #use every scan
     throttle_scans: 1
     # add new scan every 2cm
-    minimum_travel_distance: 0.02
+    minimum_travel_distance: 0.05
     #add scan after small rotation
     minimum_travel_heading: 0.05
     scan_queue_size: 20
