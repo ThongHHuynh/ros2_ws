@@ -8,7 +8,7 @@ from ament_index_python.packages import get_package_share_path
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
-def serial_available(path ="/dev/ttyCH341USB0"):
+def serial_available(path ="/dev/ttyACM0"):
     return os.path.exists(path) and os.access(path, os.R_OK | os.W_OK)
 
 def generate_launch_description():
