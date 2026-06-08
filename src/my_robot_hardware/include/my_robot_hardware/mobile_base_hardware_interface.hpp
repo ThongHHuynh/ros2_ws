@@ -37,7 +37,7 @@ private:
 
 
     //double counts_per_rev_{1440.0};        // encoder counts per wheel revolution (output shaft)
-    double counts_per_rev_{720.0}; 
+    double counts_per_rev_{449}; 
     // bool invert_left_{false};
     // bool invert_right_{false};
     bool invert_left_cmd_{false};

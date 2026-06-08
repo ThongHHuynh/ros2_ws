@@ -84,13 +84,15 @@ std::vector<hardware_interface::CommandInterface> MobileBaseHardwareInterface::e
 
 hardware_interface::CallbackReturn MobileBaseHardwareInterface::on_activate(const rclcpp_lifecycle::State &)
 {
+  RCLCPP_INFO(rclcpp::get_logger("------HARDWARE INTERFACE INFO------"),
+              "Opening serial %s @ %d", port_.c_str(), baud_);
   RCLCPP_INFO(rclcpp::get_logger("Mobile Base HW Interface"),
               "Opening serial %s @ %d", port_.c_str(), baud_);
 
   if (!serial_.open(port_, baud_))
   {
     RCLCPP_ERROR(rclcpp::get_logger("DiffDriveSerialSystem"),
-                 "Failed to open serial port %s", port_.c_str());
+                 "FAILED TO OPEN SERIAL PORT %s", port_.c_str());
     return hardware_interface::CallbackReturn::ERROR;
   }
 

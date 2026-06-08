@@ -12,7 +12,7 @@ def serial_available(path ="/dev/ttyACM0"):
     return os.path.exists(path) and os.access(path, os.R_OK | os.W_OK)
 
 def generate_launch_description():
-    port = "/dev/ttyCH341USB0"
+    port = "/dev/ttyACM0"
     use_mock = not serial_available(port)
 
     robot_description_path = get_package_share_path('my_robot_description')
