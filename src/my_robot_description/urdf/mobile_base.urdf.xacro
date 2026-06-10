@@ -28,6 +28,9 @@
         izz="0.000982061636282653" />
     </inertial>
     <visual>
+      <!-- <origin
+        xyz="0 0 0"
+        rpy="0 0 -1.5708" /> -->
       <origin
         xyz="0 0 0"
         rpy="0 0 -1.5708" />
@@ -267,7 +270,7 @@
   <joint name="base_lidar_joint" type="fixed">
     <origin
       xyz="3E-05 2.5E-05 0.20108"
-      rpy="0 0 0" />
+      rpy="0 0 3.14159" />
       <!-- rpy="1.5708 0 1.5708" /> -->
     <parent
       link="base_link" />
