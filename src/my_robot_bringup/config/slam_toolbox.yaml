@@ -6,15 +6,15 @@ slam_toolbox:
     scan_topic: /scan
 
     min_laser_range: 0.05
-    max_laser_range: 16.0
+    max_laser_range: 10.0
     #update map every 0.5 secs
-    map_update_interval: 0.5
+    map_update_interval: 0.1
     #
     transform_publish_period: 0.02
     #use every scan
     throttle_scans: 1
     # add new scan every 2cm
-    minimum_travel_distance: 0.05
+    minimum_travel_distance: 0.02
     #add scan after small rotation
-    minimum_travel_heading: 0.05
+    minimum_travel_heading: 0.02
     scan_queue_size: 20
