@@ -25,8 +25,8 @@ def generate_launch_description():
     gazebo_config_path = os.path.join(robot_bringup_path, 'config', 'gazebo_bridge.yaml')
     nav2_params_path = os.path.join(robot_bringup_path, 'config', 'nav2_params.yaml')
     world_path = os.path.join(robot_description_path, 'worlds', 'maze.sdf')
-    #nav_map_path = '/home/tom/maps/simple_maze.yaml'
-    nav_map_path = '/ros2_ws/maps/my_map.yaml'
+    nav_map_path = '/home/tom/maps/simple_maze.yaml'
+    #nav_map_path = '/ros2_ws/maps/my_map.yaml'
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path,' ',
                                                 'use_mock_hardware:=', 'true' if use_mock else 'false', ' ',
@@ -81,7 +81,8 @@ def generate_launch_description():
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        parameters=[{'config_file': gazebo_config_path}]
+        parameters=[{'config_file': gazebo_config_path}],
+        remappings=[('/odom', '/diff_drive_controller/odom')],
     )
 
     nav2_dir = IncludeLaunchDescription(
